@@ -1,0 +1,59 @@
+# Manipulation Detection in Legal Conversations
+
+Khóa luận tốt nghiệp — Nghiên cứu xây dựng khung phân tích thao túng tâm lý dựa trên mô hình ngôn ngữ lớn và học sâu
+
+
+## Project structure
+
+```
+KLTN/
+├── data/
+│   ├── raw-data/               # Raw dataset split
+│   ├── data-clean/             # Cleaned and split data (train/val/test)
+│   ├── intent/                 # Intent data from stage 1
+│   └── LegalCon-Dataset.csv    # Full dataset
+├── model/
+│   ├── finetune-mistral.ipynb  # Fine-tune Mistral LLM
+│   └── train-legalbert.ipynb   # Train Legal-BERT classifier
+├── baseline_experiments/
+│   ├── zero-shot.ipynb         # Pretrained & fine-tuned LLM zero-shot
+│   ├── few-shot.ipynb          # Pretrained & fine-tuned LLM few-shot
+│   └── claim.ipynb             # CLAIM baseline
+├── output/                     # Prediction CSVs from all experiments
+├── data_preprocessing.ipynb    # Step 1 — clean and split raw data
+├── stage1_intent.ipynb         # Step 2 — intent extraction pipeline
+├── proposed_framework.ipynb    # Step 3 — full proposed framework
+├── rawdata_framework.ipynb    # RQ1 — raw data
+├── ablation_study.ipynb        # RQ3 — ablation A, B, C
+├── analysis.ipynb              # Confusion matrix, error analysis, charts
+└── README.md
+```
+
+## Running order
+
+| Step | Notebook | Output |
+|------|----------|--------|
+| 1 | `data_preprocessing.ipynb` | `data/data-clean/`, `data/intent/` |
+| 2 | `model/train-legalbert.ipynb` | Legal-BERT weights |
+| 3 | `model/finetune-mistral.ipynb` | Fine-tuned Mistral weights |
+| 4 | `stage1_intent.ipynb` | Intent features used by framework |
+| 5 | `proposed_framework.ipynb` | `output/manipulation_results.csv` |
+| 6 | `rawdata_framework.ipynb` | `output/manipulation_results_raw.csv` |
+| 7 | `baseline_experiments/*.ipynb` | `output/results_*.csv` |
+| 8 | `ablation_study.ipynb` | `output/ablation_*.csv` |
+| 9 | `analysis.ipynb` | Figures and error analysis |
+
+## Output files
+
+| File | Description |
+|------|-------------|
+| `manipulation_results.csv` | Proposed framework predictions (cleaned data) — used for both RQ1 and RQ2 |
+| `manipulation_results_raw.csv` | Proposed framework predictions on raw data — RQ1 comparison |
+| `manipulation_results_no_intent.csv` | Ablation B — no intent module |
+| `ablation_llm_only_results.csv` | Ablation A — no multi-agent (LLM only) |
+| `ablation_no_bert_results.csv` | Ablation C — no Legal-BERT |
+| `results_zeroshot_pretrained.csv` | Pretrained LLM zero-shot baseline |
+| `results_zeroshot_finetuned.csv` | Fine-tuned LLM zero-shot baseline |
+| `results_fewshot_pretrained.csv` | Pretrained LLM few-shot baseline |
+| `results_fewshot_finetuned.csv` | Fine-tuned LLM few-shot baseline |
+| `claim.csv` | CLAIM original baseline |
