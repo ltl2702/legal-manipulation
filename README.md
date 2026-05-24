@@ -63,9 +63,9 @@ KLTN/
 | Bước | Notebook | Output |
 |------|----------|--------|
 | 1 | `data_preprocessing.ipynb` | `data/data-clean/` |
-| 2 | `model/finetune-mistral.ipynb` | Fine-tuned Mistral weights |
-| 3 | `model/train-legalbert.ipynb` | Legal-BERT weights |
-| 4 | `stage1_intent.ipynb` | `data/intent/`, `data/raw-intent/` |
+| 2 | `stage1_intent.ipynb` | `data/intent/`, `data/raw-intent/` |
+| 3 | `model/finetune-mistral.ipynb` | Fine-tuned Mistral weights |
+| 4 | `model/train-legalbert.ipynb` | Legal-BERT weights |
 | 5 | `proposed_framework.ipynb` | `output/manipulation_results.csv` |
 | 6 | `rawdata_framework.ipynb` | `output/manipulation_results_raw.csv` |
 | 7 | `baseline_experiments/zero-shot.ipynb` | `output/results_zeroshot_*.csv` |
